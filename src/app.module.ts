@@ -7,6 +7,7 @@ import { MongoProductModule } from './mongoProduct/mongoProduct.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database.module';
+import { PgProductModule } from './pgProduct/pgProduct.module';
 
 @Module({
   imports: [
@@ -19,12 +20,17 @@ import { DatabaseModule } from './database.module';
         POSTGRES_DB: Joi.string().required(),
       })
     }),
-    DatabaseModule,
-    ProductModule,
     MongooseModule.forRoot(
       'mongodb://localhost:27017/nestjs'
     ),
+
+
+    DatabaseModule,
+
+
+    ProductModule,
     MongoProductModule,
+    PgProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
